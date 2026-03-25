@@ -32,30 +32,7 @@ FunctionGPIO PinI2C LCD SDAGPIO 21I2C LCD SCLGPIO 22RS485 UART1 RX (pH & Temp)GP
 💻 Software & Libraries
 LibraryPurposeWiFiESP32 WiFi connectionHTTPClientHTTPS POST data to serverArduinoJsonJSON serializationNTPClientTime synchronizationWiFiClientSecureSecure HTTPS connectionLiquidCrystal_I2CLCD display controlHardwareSerialDual RS485 UART communication
 
-⚙️ System Architecture
-┌─────────────────────────────────────────────┐
-│              SENSOR LAYER                   │
-│                                             │
-│  pH + Temp Sensor        DO Sensor          │
-│  (RS485 Modbus)          (RS485 Modbus)     │
-└────────────┬─────────────────┬──────────────┘
-             │ UART1           │ UART2
-             ▼                 ▼
-┌─────────────────────────────────────────────┐
-│           ESP32 CONTROLLER                  │
-│                                             │
-│  • Parse Modbus hex response                │
-│  • Calculate pH / Temp / DO values          │
-│  • NTP time sync                            │
-│  • NaN fault detection                      │
-└──────────────┬──────────────┬───────────────┘
-               │              │
-               ▼              ▼
-      ┌─────────────┐  ┌─────────────────┐
-      │  I2C LCD    │  │  Cloud Server   │
-      │  20x4       │  │  (HTTPS JSON)   │
-      │  Live View  │  │  Every 10 mins  │
-      └─────────────┘  └─────────────────┘
+
 
 📊 Data Format (JSON)
 json{
