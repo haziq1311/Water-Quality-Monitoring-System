@@ -1,9 +1,11 @@
 📌 Project Description
+
 This project is a real-time IoT-based water quality monitoring system designed for aquaculture pond management and environmental monitoring. Built on the ESP32 microcontroller, it continuously measures three critical water parameters — pH, dissolved oxygen (DO), and water temperature — using industrial RS485 Modbus sensors.
 Sensor readings are displayed live on a 20x4 I2C LCD screen installed at the site, allowing on-ground operators to check water conditions at a glance. At the same time, data is automatically transmitted to a cloud server in JSON format every 10 minutes using NTP-synchronized scheduling, enabling remote monitoring from anywhere.
 The system is designed for continuous, unattended outdoor operation with WiFi auto-reconnect and sensor fault handling (NaN detection) to ensure reliable and consistent data logging. It has been deployed for real aquaculture pond monitoring as part of a live production environment.
 
 🎯 Problem Solved
+
 Manual water quality testing in fish ponds is:
 
 Time-consuming — requires physical presence at the pond
@@ -14,27 +16,51 @@ This system solves all three by providing continuous automated monitoring with r
 
 ✨ Key Features
 
+
 📊 Real-time measurement of pH, Dissolved Oxygen (DO), and Temperature
+
 🖥️ Live 20x4 I2C LCD display for on-site readings
+
 🌐 Automated HTTPS cloud data upload every 10 minutes
+
 ⏱️ NTP time synchronization for accurate scheduling
+
 📡 Dual RS485 UART channels — dedicated lines for pH/Temp and DO sensors
+
 🔄 WiFi auto-reconnect with LCD status feedback
+
 🛡️ NaN fault detection to prevent bad data from being uploaded
 
 
+
+
 🛠️ Hardware Components
-ComponentDescriptionESP32 Development BoardMain microcontrollerRS485 to TTL Converter Module (x2)UART1 for pH & Temp sensor, UART2 for DO sensorpH + Temperature SensorIndustrial RS485 Modbus sensorDissolved Oxygen (DO) SensorIndustrial RS485 Modbus sensor20x4 I2C LCD DisplayOn-site real-time display (I2C address 0x27)Power Supply Module12V DC system powerEnclosure BoxWeatherproof housing for outdoor deployment
 
-🔌 Pin Configuration
-FunctionGPIO PinI2C LCD SDAGPIO 21I2C LCD SCLGPIO 22RS485 UART1 RX (pH & Temp)GPIO 4RS485 UART1 TX (pH & Temp)GPIO 5RS485 UART2 RX (DO)GPIO 13RS485 UART2 TX (DO)GPIO 12RS485 Direction Control UART1GPIO 15RS485 Direction Control UART2GPIO 23
+Component Description
 
-💻 Software & Libraries
-LibraryPurposeWiFiESP32 WiFi connectionHTTPClientHTTPS POST data to serverArduinoJsonJSON serializationNTPClientTime synchronizationWiFiClientSecureSecure HTTPS connectionLiquidCrystal_I2CLCD display controlHardwareSerialDual RS485 UART communication
+-ESP32 Development BoardMain microcontroller
+
+-RS485 to TTL Converter Module (x2)UART1 for pH & Temp sensor
+
+-UART2 for DO sensorpH + Temperature Sensor
+
+-Industrial RS485 Modbus sensorDissolved Oxygen (DO) Sensor
+
+-Industrial RS485 Modbus sensor
+
+-20x4 I2C LCD DisplayOn-site real-time display (I2C address 0x27)
+
+-Power Supply Module12V DC 
+
+-system powerEnclosure BoxWeatherproof housing for outdoor deployment
+
+
 
 
 
 📊 Data Format (JSON)
+
+
 json{
   "sensorId":    "YOUR_SENSOR_ID",
   "pondid":       1234567890,
@@ -45,10 +71,11 @@ json{
   "voltage":      12.3
 }
 
-⏱️ Scheduling Logic
-ConditionActionEvery second (when sec < 5)POST data to cloud serverEvery 10 minutes (min: 0,10,20,30,40,50)Refresh LCD display valuesWiFi disconnectedShow status on LCD, retry connectionDO reading is NaNReplace with 0 before upload
+
 
 🚀 Getting Started
+
+
 1. Install Libraries
 In Arduino IDE, install via Library Manager:
 ArduinoJson
@@ -72,12 +99,18 @@ Click Upload
 
 
 📸 Deployment
+
+
 This system has been deployed for real aquaculture pond monitoring at a live production site, providing continuous water quality data to support fish farm operations and early detection of water quality issues.
 
 👤 Developer
+
+
 Muhammad Haziq Bin Md Hanapi
 Electronic Engineer — Embedded Systems & IoT
 📧 mhaziq1311@gmail.com
 
 📄 License
+
+
 This project is for portfolio and demonstration purposes.
